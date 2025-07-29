@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>向量索引 - Coze Studio RAG百科</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">Coze Studio RAG百科</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">首页</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    RAG索引策略
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item active" href="vector-index.html">向量索引</a></li>
+                                    <li><a class="dropdown-item" href="keyword-index.html">关键词索引</a></li>
+                                    <li><a class="dropdown-item" href="hierarchical-index.html">分层索引</a></li>
+                                    <li><a class="dropdown-item" href="hybrid-index.html">混合索引策略</a></li>
+                                    <li><a class="dropdown-item" href="index-parameters.html">索引参数配置</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">关于</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">联系我们</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="resources.html">资源</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="content-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="content">
+                        <h1>向量索引</h1>
+                        
+                        <p class="lead">向量索引是RAG系统中最常用的索引策略之一，它通过将文本转换为高维向量并构建高效的近似最近邻搜索结构，实现语义相似度检索。</p>
+                        
+                        <div class="svg-container">
+                            <img src="images/hnsw_algorithm.svg" alt="HNSW算法图解" class="img-fluid">
+                        </div>
+                        
+                        <h2 id="what-is-vector-index">什么是向量索引？</h2>
+                        <p>向量索引是一种将文本内容转换为高维向量（通常是几百到几千维）并构建特殊数据结构以支持高效相似度搜索的索引方法。在RAG系统中，向量索引通常基于文本嵌入（Text Embeddings）技术，将文档或文档片段转换为向量表示，然后通过计算向量之间的相似度（如余弦相似度、欧氏距离等）来找到与查询最相关的内容。</p>
+                        
+                        <h2 id="vector-index-algorithms">常见的向量索引算法</h2>
+                        <p>在RAG系统中，常用的向量索引算法主要有以下几种：</p>
+                        
+                        <h3 id="hnsw">HNSW (Hierarchical Navigable Small World)</h3>
+                        <p>HNSW是目前最流行的向量索引算法之一，它通过构建多层图结构来实现高效的近似最近邻搜索。</p>
+                        
+                        <h4>HNSW算法原理</h4>
+                        <ul>
+                            <li><strong>多层图结构</strong>：HNSW构建了一个多层次的图，底层包含所有节点，上层是下层的稀疏表示</li>
+                            <li><strong>小世界特性</strong>：每个节点都与其他节点建立"长距离"和"短距离"连接，形成小世界网络</li>
+                            <li><strong>贪婪搜索</strong>：搜索时从顶层开始，通过贪婪算法逐层下降，最终在底层找到最近邻</li>
+                        </ul>
+                        
+                        <h4>HNSW优势</h4>
+                        <ul>
+                            <li>搜索复杂度接近O(log n)，远优于暴力搜索的O(n)</li>
+                            <li>高召回率，通常能达到95%以上的准确率</li>
+                            <li>支持动态添加新向量，无需重建整个索引</li>
+                            <li>内存占用相对较小，适合大规模向量集合</li>
+                        </ul>
+                        
+                        <h4>HNSW关键参数</h4>
+                        <ul>
+                            <li><strong>M</strong>：每个节点的最大连接数，通常设置为5-100之间，值越大，准确率越高，但内存消耗也越大</li>
+                            <li><strong>ef_construction</strong>：构建索引时的搜索宽度，影响索引质量，通常设置为100-2000</li>
+                            <li><strong>ef_search</strong>：搜索时的候选集大小，影响搜索准确率和速度，通常设置为50-2000</li>
+                        </ul>
+                        
+                        <h3 id="ivf">IVF (Inverted File Index)</h3>
+                        <p>IVF是一种基于聚类的向量索引方法，它将向量空间划分为多个簇，搜索时只需在相关簇中进行。</p>
+                        
+                        <h4>IVF算法原理</h4>
+                        <ul>
+                            <li><strong>聚类划分</strong>：使用K-means等聚类算法将向量空间划分为nlist个簇</li>
+                            <li><strong>倒排表</strong>：为每个簇维护一个倒排表，记录属于该簇的所有向量</li>
+                            <li><strong>两阶段搜索</strong>：先找到与查询向量最近的nprobe个簇，然后只在这些簇中搜索</li>
+                        </ul>
+                        
+                        <h4>IVF优势</h4>
+                        <ul>
+                            <li>搜索速度快，尤其适合大规模向量集合</li>
+                            <li>内存占用较小，可处理数十亿级别的向量</li>
+                            <li>实现简单，易于理解和调优</li>
+                        </ul>
+                        
+                        <h4>IVF关键参数</h4>
+                        <ul>
+                            <li><strong>nlist</strong>：簇的数量，通常设置为向量总数的平方根到向量总数的四分之一</li>
+                            <li><strong>nprobe</strong>：搜索时考虑的簇数量，影响搜索准确率和速度，通常设置为1-100</li>
+                        </ul>
+                        
+                        <h3 id="pq">PQ (Product Quantization)</h3>
+                        <p>PQ是一种向量压缩技术，通常与IVF等算法结合使用，可以大幅减少内存占用。</p>
+                        
+                        <h4>PQ算法原理</h4>
+                        <ul>
+                            <li><strong>子空间分解</strong>：将高维向量分解为多个低维子向量</li>
+                            <li><strong>子空间量化</strong>：对每个子空间进行K-means聚类，用聚类中心的索引代替原始子向量</li>
+                            <li><strong>距离近似</strong>：使用预计算的距离表快速计算近似距离</li>
+                        </ul>
+                        
+                        <h4>PQ优势</h4>
+                        <ul>
+                            <li>极大减少内存占用，通常可压缩到原来的1/8到1/64</li>
+                            <li>支持在压缩空间中直接计算近似距离，无需解压</li>
+                            <li>适合超大规模向量集合，可处理数十亿级别的向量</li>
+                        </ul>
+                        
+                        <h4>PQ关键参数</h4>
+                        <ul>
+                            <li><strong>M</strong>：子空间的数量，通常设置为4-64</li>
+                            <li><strong>nbits</strong>：每个子空间的量化位数，通常为8位（对应256个聚类中心）</li>
+                        </ul>
+                        
+                        <h2 id="vector-index-in-rag">向量索引在RAG中的应用</h2>
+                        
+                        <h3 id="embedding-models">嵌入模型选择</h3>
+                        <p>向量索引的效果很大程度上取决于所使用的嵌入模型。在RAG系统中，常用的嵌入模型包括：</p>
+                        <ul>
+                            <li><strong>OpenAI Embeddings</strong>：如text-embedding-ada-002，维度为1536</li>
+                            <li><strong>Sentence Transformers</strong>：如all-MiniLM-L6-v2，维度为384</li>
+                            <li><strong>BGE Embeddings</strong>：如bge-large-zh，专为中文优化</li>
+                            <li><strong>E5 Embeddings</strong>：如e5-large-v2，在多种检索任务上表现优异</li>
+                        </ul>
+                        
+                        <h3 id="chunking-strategies">文本分块策略</h3>
+                        <p>在构建向量索引前，需要将文档分割成适当大小的块。常见的分块策略包括：</p>
+                        <ul>
+                            <li><strong>固定大小分块</strong>：按字符数或token数固定分割</li>
+                            <li><strong>句子分块</strong>：按自然句子边界分割</li>
+                            <li><strong>段落分块</strong>：按段落边界分割</li>
+                            <li><strong>语义分块</strong>：根据语义完整性动态调整分块大小</li>
+                            <li><strong>重叠分块</strong>：相邻块之间保留一定重叠，避免信息丢失</li>
+                        </ul>
+                        
+                        <h3 id="similarity-metrics">相似度度量</h3>
+                        <p>向量索引中常用的相似度度量方法包括：</p>
+                        <ul>
+                            <li><strong>余弦相似度</strong>：测量向量方向的相似性，对向量长度不敏感</li>
+                            <li><strong>欧氏距离</strong>：测量向量在空间中的绝对距离</li>
+                            <li><strong>点积</strong>：对于归一化向量，等价于余弦相似度</li>
+                            <li><strong>汉明距离</strong>：适用于二进制向量</li>
+                        </ul>
+                        
+                        <h2 id="vector-db">向量数据库</h2>
+                        <p>在实际应用中，向量索引通常通过向量数据库实现。常见的向量数据库包括：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>向量数据库</th>
+                                        <th>支持的索引算法</th>
+                                        <th>特点</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Faiss</td>
+                                        <td>HNSW, IVF, PQ</td>
+                                        <td>高性能，支持GPU加速，内存占用小</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Milvus</td>
+                                        <td>HNSW, IVF, PQ</td>
+                                        <td>分布式架构，支持混合搜索，高可扩展性</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pinecone</td>
+                                        <td>专有算法</td>
+                                        <td>全托管服务，易于使用，自动扩展</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weaviate</td>
+                                        <td>HNSW</td>
+                                        <td>支持多模态数据，GraphQL接口</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Qdrant</td>
+                                        <td>HNSW</td>
+                                        <td>支持过滤器，高性能，易于部署</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Chroma</td>
+                                        <td>HNSW</td>
+                                        <td>轻量级，易于集成，适合原型开发</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h2 id="optimization-tips">向量索引优化技巧</h2>
+                        
+                        <h3 id="performance-optimization">性能优化</h3>
+                        <ul>
+                            <li><strong>降维</strong>：使用PCA等技术降低向量维度，减少计算量</li>
+                            <li><strong>量化</strong>：使用标量量化或乘积量化减少内存占用</li>
+                            <li><strong>批处理</strong>：批量处理查询，提高吞吐量</li>
+                            <li><strong>预热索引</strong>：提前加载索引到内存，避免冷启动延迟</li>
+                            <li><strong>分片</strong>：将大型索引分割成多个分片，分布在不同节点上</li>
+                        </ul>
+                        
+                        <h3 id="quality-optimization">质量优化</h3>
+                        <ul>
+                            <li><strong>重排序</strong>：先用向量索引快速检索候选集，再用更精确的方法重排序</li>
+                            <li><strong>多查询扩展</strong>：将一个查询扩展为多个相关查询，提高召回率</li>
+                            <li><strong>混合检索</strong>：结合关键词搜索和向量搜索的结果</li>
+                            <li><strong>元数据过滤</strong>：使用元数据（如时间、类别等）过滤搜索结果</li>
+                        </ul>
+                        
+                        <h2 id="limitations">向量索引的局限性</h2>
+                        <ul>
+                            <li><strong>语义理解有限</strong>：依赖于嵌入模型的能力，可能无法捕捉复杂语义关系</li>
+                            <li><strong>缺乏精确匹配</strong>：不适合需要精确关键词匹配的场景</li>
+                            <li><strong>维度灾难</strong>：高维空间中距离度量的区分度降低</li>
+                            <li><strong>资源消耗</strong>：高质量索引需要较大内存和计算资源</li>
+                            <li><strong>冷启动问题</strong>：大型索引首次加载可能较慢</li>
+                        </ul>
+                        
+                        <h2 id="case-studies">案例研究</h2>
+                        
+                        <h3 id="case-study-1">案例1：大规模文档库的向量索引设计</h3>
+                        <p>对于包含数百万文档的大型知识库，可以采用以下索引策略：</p>
+                        <ul>
+                            <li>使用IVF+PQ组合算法，平衡搜索速度和内存占用</li>
+                            <li>设置nlist=10000，nprobe=100，M=16，nbits=8</li>
+                            <li>采用分片架构，每个分片包含100万向量</li>
+                            <li>实现异步索引更新机制，支持增量更新</li>
+                        </ul>
+                        
+                        <h3 id="case-study-2">案例2：实时问答系统的向量索引优化</h3>
+                        <p>对于需要低延迟响应的实时问答系统，可以采用以下策略：</p>
+                        <ul>
+                            <li>使用HNSW算法，优先考虑搜索速度</li>
+                            <li>设置M=16，ef_construction=200，ef_search=100</li>
+                            <li>预热索引，将整个索引加载到内存</li>
+                            <li>实现查询缓存，避免重复计算</li>
+                            <li>采用两阶段检索：先快速检索候选集，再精确重排序</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="toc-container sticky-top" style="top: 100px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2023 Coze Studio RAG百科. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

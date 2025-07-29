@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>索引参数配置 - Coze Studio RAG百科</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">Coze Studio RAG百科</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">首页</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    RAG索引策略
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="vector-index.html">向量索引</a></li>
+                                    <li><a class="dropdown-item" href="keyword-index.html">关键词索引</a></li>
+                                    <li><a class="dropdown-item" href="hierarchical-index.html">分层索引</a></li>
+                                    <li><a class="dropdown-item" href="hybrid-index.html">混合索引策略</a></li>
+                                    <li><a class="dropdown-item active" href="index-parameters.html">索引参数配置</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">关于</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">联系我们</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="resources.html">资源</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="content-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="content">
+                        <h1>索引参数配置</h1>
+                        
+                        <p class="lead">索引参数配置是RAG系统性能优化的关键环节，合理的参数设置可以显著提高检索效率、准确性和系统整体性能。本页面详细介绍各类索引的关键参数及其调优建议。</p>
+                        
+                        <div class="svg-container">
+                            <img src="images/index_parameters.svg" alt="索引参数配置图解" class="img-fluid">
+                        </div>
+                        
+                        <h2 id="vector-index-parameters">向量索引参数</h2>
+                        <p>向量索引的参数配置直接影响检索的效率和准确性，主要包括索引算法参数和向量相似度参数。</p>
+                        
+                        <h3 id="hnsw-parameters">HNSW算法参数</h3>
+                        <p>HNSW (Hierarchical Navigable Small World) 是目前最常用的向量索引算法之一，其关键参数包括：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>参数</th>
+                                        <th>描述</th>
+                                        <th>建议值</th>
+                                        <th>影响</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>M</td>
+                                        <td>每个节点的最大出边数</td>
+                                        <td>12-64</td>
+                                        <td>值越大，构建越慢，内存消耗越大，但查询越准确</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ef_construction</td>
+                                        <td>构建时的候选集大小</td>
+                                        <td>100-500</td>
+                                        <td>值越大，构建越慢，但索引质量越高</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ef_search</td>
+                                        <td>搜索时的候选集大小</td>
+                                        <td>50-200</td>
+                                        <td>值越大，搜索越慢，但结果越准确</td>
+                                    </tr>
+                                    <tr>
+                                        <td>num_layers</td>
+                                        <td>层数</td>
+                                        <td>自动计算或4-12</td>
+                                        <td>层数越多，适合处理更大规模的数据</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>HNSW参数调优建议</h4>
+                        <ul>
+                            <li><strong>数据规模小（<10万）</strong>：M=16, ef_construction=200, ef_search=50</li>
+                            <li><strong>数据规模中（10万-100万）</strong>：M=32, ef_construction=300, ef_search=100</li>
+                            <li><strong>数据规模大（>100万）</strong>：M=64, ef_construction=500, ef_search=200</li>
+                            <li><strong>实时性要求高</strong>：降低ef_search，牺牲部分准确性换取速度</li>
+                            <li><strong>准确性要求高</strong>：提高ef_search和M，牺牲部分速度换取准确性</li>
+                        </ul>
+                        
+                        <h3 id="ivf-parameters">IVF算法参数</h3>
+                        <p>IVF (Inverted File Index) 是另一种常用的向量索引算法，其关键参数包括：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>参数</th>
+                                        <th>描述</th>
+                                        <th>建议值</th>
+                                        <th>影响</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>nlist</td>
+                                        <td>聚类中心数量</td>
+                                        <td>4*sqrt(N)到16*sqrt(N)</td>
+                                        <td>值越大，构建越慢，内存消耗越大，但查询可能更准确</td>
+                                    </tr>
+                                    <tr>
+                                        <td>nprobe</td>
+                                        <td>搜索时检查的聚类数量</td>
+                                        <td>1-256</td>
+                                        <td>值越大，搜索越慢，但结果越准确</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>IVF参数调优建议</h4>
+                        <ul>
+                            <li><strong>nlist设置</strong>：通常设置为数据量N的平方根的4-16倍，如10万数据可设置为1000-4000</li>
+                            <li><strong>nprobe设置</strong>：通常从nlist的1%开始，根据需要增加，如nlist=1000，可从nprobe=10开始调整</li>
+                            <li><strong>平衡点</strong>：nprobe约为nlist的10%时，通常能达到较好的速度/准确性平衡</li>
+                        </ul>
+                        
+                        <h3 id="pq-parameters">PQ算法参数</h3>
+                        <p>PQ (Product Quantization) 是一种用于压缩向量的技术，常与IVF结合使用，其关键参数包括：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>参数</th>
+                                        <th>描述</th>
+                                        <th>建议值</th>
+                                        <th>影响</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>m</td>
+                                        <td>子向量数量</td>
+                                        <td>1-256</td>
+                                        <td>值越大，压缩率越高，但精度损失可能更大</td>
+                                    </tr>
+                                    <tr>
+                                        <td>nbits</td>
+                                        <td>每个子向量的位数</td>
+                                        <td>8（常用）</td>
+                                        <td>值越大，压缩率越低，但精度越高</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>PQ参数调优建议</h4>
+                        <ul>
+                            <li><strong>m设置</strong>：通常设置为向量维度的1/4到1/8，如768维向量可设置m=96或m=64</li>
+                            <li><strong>压缩率与精度平衡</strong>：m越大，压缩率越高，但精度损失也越大</li>
+                            <li><strong>与IVF结合</strong>：IVF-PQ中，先调整IVF参数，再调整PQ参数</li>
+                        </ul>
+                        
+                        <h3 id="similarity-parameters">向量相似度参数</h3>
+                        <p>向量相似度计算方法和参数也会影响检索结果：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>参数</th>
+                                        <th>描述</th>
+                                        <th>选项</th>
+                                        <th>适用场景</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>距离度量</td>
+                                        <td>向量间距离计算方法</td>
+                                        <td>欧氏距离、余弦相似度、内积、汉明距离</td>
+                                        <td>根据嵌入模型选择合适的距离度量</td>
+                                    </tr>
+                                    <tr>
+                                        <td>top_k</td>
+                                        <td>返回的最相似结果数量</td>
+                                        <td>3-100</td>
+                                        <td>根据应用需求和后处理逻辑调整</td>
+                                    </tr>
+                                    <tr>
+                                        <td>相似度阈值</td>
+                                        <td>结果筛选的相似度阈值</td>
+                                        <td>0.5-0.9</td>
+                                        <td>根据数据特点和准确性要求调整</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>相似度参数调优建议</h4>
+                        <ul>
+                            <li><strong>距离度量选择</strong>：
+                                <ul>
+                                    <li>OpenAI嵌入模型：余弦相似度</li>
+                                    <li>BERT类模型：欧氏距离或余弦相似度</li>
+                                    <li>归一化向量：内积（计算更快）</li>
+                                </ul>
+                            </li>
+                            <li><strong>top_k设置</strong>：
+                                <ul>
+                                    <li>简单问答：3-5</li>
+                                    <li>复杂问题：10-20</li>
+                                    <li>探索性查询：20-50</li>
+                                </ul>
+                            </li>
+                            <li><strong>相似度阈值</strong>：从0.7开始，根据结果质量调整</li>
+                        </ul>
+                        
+                        <h2 id="keyword-index-parameters">关键词索引参数</h2>
+                        <p>关键词索引的参数配置影响检索的精确性和召回率，主要包括BM25算法参数和关键词提取参数。</p>
+                        
+                        <h3 id="bm25-parameters">BM25算法参数</h3>
+                        <p>BM25是关键词索引中常用的排序算法，其关键参数包括：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>参数</th>
+                                        <th>描述</th>
+                                        <th>建议值</th>
+                                        <th>影响</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>k1</td>
+                                        <td>词频饱和参数</td>
+                                        <td>1.2-2.0</td>
+                                        <td>控制词频对得分的影响程度</td>
+                                    </tr>
+                                    <tr>
+                                        <td>b</td>
+                                        <td>文档长度归一化参数</td>
+                                        <td>0.75-0.9</td>
+                                        <td>控制文档长度对得分的影响程度</td>
+                                    </tr>
+                                    <tr>
+                                        <td>epsilon</td>
+                                        <td>平滑参数</td>
+                                        <td>0.25</td>
+                                        <td>防止除零错误，影响稀有词的权重</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>BM25参数调优建议</h4>
+                        <ul>
+                            <li><strong>k1调整</strong>：
+                                <ul>
+                                    <li>较小的k1（0.5-1.5）：适合短文本，词频影响较小</li>
+                                    <li>较大的k1（1.5-2.5）：适合长文本，词频影响较大</li>
+                                </ul>
+                            </li>
+                            <li><strong>b调整</strong>：
+                                <ul>
+                                    <li>较小的b（0.5-0.7）：文档长度影响较小，适合长度差异大的文档集</li>
+                                    <li>较大的b（0.7-1.0）：文档长度影响较大，适合长度相近的文档集</li>
+                                </ul>
+                            </li>
+                            <li><strong>常用组合</strong>：
+                                <ul>
+                                    <li>通用设置：k1=1.2, b=0.75</li>
+                                    <li>长文本：k1=2.0, b=0.8</li>
+                                    <li>短文本：k1=1.0, b=0.6</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3 id="keyword-extraction-parameters">关键词提取参数</h3>
+                        <p>关键词提取的参数影响索引的质量和检索效果：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>参数</th>
+                                        <th>描述</th>
+                                        <th>建议值</th>
+                                        <th>影响</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>分词方法</td>
+                                        <td>文本分词的算法</td>
+                                        <td>根据语言选择合适的分词器</td>
+                                        <td>影响关键词的识别和匹配</td>
+                                    </tr>
+                                    <tr>
+                                        <td>停用词列表</td>
+                                        <td>需要过滤的常见词</td>
+                                        <td>根据领域定制</td>
+                                        <td>减少无意义词的干扰</td>
+                                    </tr>
+                                    <tr>
+                                        <td>同义词扩展</td>
+                                        <td>同义词的扩展设置</td>
+                                        <td>根据领域定制</td>
+                                        <td>增加召回率，处理同义表达</td>
+                                    </tr>
+                                    <tr>
+                                        <td>n-gram范围</td>
+                                        <td>词组长度范围</td>
+                                        <td>1-3</td>
+                                        <td>控制短语匹配的粒度</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>关键词提取参数调优建议</h4>
+                        <ul>
+                            <li><strong>分词方法选择</strong>：
+                                <ul>
+                                    <li>中文：jieba、THULAC</li>
+                                    <li>英文：NLTK、spaCy</li>
+                                    <li>专业领域：领域定制分词器</li>
+                                </ul>
+                            </li>
+                            <li><strong>停用词列表</strong>：
+                                <ul>
+                                    <li>通用停用词 + 领域特定停用词</li>
+                                    <li>根据数据分析动态调整</li>
+                                </ul>
+                            </li>
+                            <li><strong>n-gram设置</strong>：
+                                <ul>
+                                    <li>技术文档：1-3（捕捉专业术语）</li>
+                                    <li>一般文本：1-2（基本词和短语）</li>
+                                    <li>特定领域：根据术语长度调整</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h2 id="hierarchical-index-parameters">分层索引参数</h2>
+                        <p>分层索引的参数配置影响层次结构的组织和检索效率：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>参数</th>
+                                        <th>描述</th>
+                                        <th>建议值</th>
+                                        <th>影响</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>层级数量</td>
+                                        <td>索引的层级数</td>
+                                        <td>2-5</td>
+                                        <td>层级越多，结构越复杂，但粒度更细</td>
+                                    </tr>
+                                    <tr>
+                                        <td>层级划分方法</td>
+                                        <td>层级的划分依据</td>
+                                        <td>结构化划分、聚类划分、主题划分</td>
+                                        <td>影响层级的组织逻辑和检索路径</td>
+                                    </tr>
+                                    <tr>
+                                        <td>层级间关系</td>
+                                        <td>层级之间的关系类型</td>
+                                        <td>父子关系、嵌套关系、引用关系</td>
+                                        <td>影响层级间的导航和检索</td>
+                                    </tr>
+                                    <tr>
+                                        <td>检索策略</td>
+                                        <td>多层级检索的策略</td>
+                                        <td>自上而下、自下而上、混合策略</td>
+                                        <td>影响检索的路径和效率</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>分层索引参数调优建议</h4>
+                        <ul>
+                            <li><strong>层级数量</strong>：
+                                <ul>
+                                    <li>简单文档：2-3层（如文档-段落）</li>
+                                    <li>复杂文档：3-5层（如文档-章节-段落-句子）</li>
+                                </ul>
+                            </li>
+                            <li><strong>层级划分方法</strong>：
+                                <ul>
+                                    <li>结构化文档：按文档结构划分</li>
+                                    <li>非结构化文档：按主题或语义聚类划分</li>
+                                </ul>
+                            </li>
+                            <li><strong>检索策略选择</strong>：
+                                <ul>
+                                    <li>概述性问题：自上而下</li>
+                                    <li>具体问题：自下而上</li>
+                                    <li>复杂问题：混合策略</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h2 id="hybrid-index-parameters">混合索引参数</h2>
+                        <p>混合索引的参数配置影响不同索引方法的融合效果：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>参数</th>
+                                        <th>描述</th>
+                                        <th>建议值</th>
+                                        <th>影响</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>融合方法</td>
+                                        <td>不同索引结果的融合方式</td>
+                                        <td>线性组合、排序聚合、过滤融合、学习排序</td>
+                                        <td>影响融合结果的质量和多样性</td>
+                                    </tr>
+                                    <tr>
+                                        <td>权重分配</td>
+                                        <td>不同索引的权重</td>
+                                        <td>根据查询类型和数据特点调整</td>
+                                        <td>影响不同索引在最终结果中的重要性</td>
+                                    </tr>
+                                    <tr>
+                                        <td>检索顺序</td>
+                                        <td>多索引检索的执行顺序</td>
+                                        <td>并行检索、级联检索</td>
+                                        <td>影响检索效率和结果质量</td>
+                                    </tr>
+                                    <tr>
+                                        <td>结果数量</td>
+                                        <td>各索引返回的结果数量</td>
+                                        <td>根据融合方法和需求调整</td>
+                                        <td>影响融合的候选集大小和多样性</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4>混合索引参数调优建议</h4>
+                        <ul>
+                            <li><strong>融合方法选择</strong>：
+                                <ul>
+                                    <li>简单场景：线性组合（向量0.7 + 关键词0.3）</li>
+                                    <li>精确匹配需求：关键词预过滤 + 向量排序</li>
+                                    <li>复杂场景：学习排序（需要训练数据）</li>
+                                </ul>
+                            </li>
+                            <li><strong>权重分配策略</strong>：
+                                <ul>
+                                    <li>概念性问题：向量索引权重高</li>
+                                    <li>事实性问题：关键词索引权重高</li>
+                                    <li>结构化问题：分层索引权重高</li>
+                                </ul>
+                            </li>
+                            <li><strong>检索顺序优化</strong>：
+                                <ul>
+                                    <li>大规模数据：先用轻量级索引筛选，再用精确索引排序</li>
+                                    <li>小规模数据：并行检索，然后融合结果</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h2 id="parameter-tuning-process">参数调优流程</h2>
+                        <p>系统性的参数调优流程可以帮助找到最优的参数配置：</p>
+                        
+                        <h3 id="baseline-establishment">建立基线</h3>
+                        <ol>
+                            <li>使用默认参数配置建立初始索引</li>
+                            <li>设计代表性的测试查询集</li>
+                            <li>评估基线性能（准确性、速度、资源消耗）</li>
+                            <li>识别需要优化的方面</li>
+                        </ol>
+                        
+                        <h3 id="single-parameter-tuning">单参数调优</h3>
+                        <ol>
+                            <li>选择一个关键参数进行调整</li>
+                            <li>设置多个不同的参数值</li>
+                            <li>对每个参数值进行测试评估</li>
+                            <li>找到该参数的最优值</li>
+                        </ol>
+                        
+                        <h3 id="multi-parameter-tuning">多参数联合调优</h3>
+                        <ol>
+                            <li>选择相互影响的参数组合</li>
+                            <li>设计参数组合的测试矩阵</li>
+                            <li>评估不同组合的性能</li>
+                            <li>找到最优的参数组合</li>
+                        </ol>
+                        
+                        <h3 id="validation-and-refinement">验证与微调</h3>
+                        <ol>
+                            <li>在更大的测试集上验证参数配置</li>
+                            <li>分析不同类型查询的性能</li>
+                            <li>针对特定查询类型进行微调</li>
+                            <li>平衡整体性能和特定场景性能</li>
+                        </ol>
+                        
+                        <h2 id="monitoring-and-adaptation">监控与适应</h2>
+                        <p>参数配置不是一成不变的，需要根据系统运行情况进行动态调整：</p>
+                        
+                        <h3 id="performance-monitoring">性能监控</h3>
+                        <ul>
+                            <li><strong>关键指标</strong>：查询延迟、准确率、召回率、资源使用率</li>
+                            <li><strong>监控频率</strong>：定期监控（如每日、每周）和事件触发监控</li>
+                            <li><strong>异常检测</strong>：设置性能指标阈值，及时发现异常</li>
+                        </ul>
+                        
+                        <h3 id="adaptive-adjustment">自适应调整</h3>
+                        <ul>
+                            <li><strong>负载自适应</strong>：根据系统负载动态调整参数（如高负载时降低ef_search）</li>
+                            <li><strong>数据增长自适应</strong>：随着数据量增长调整索引参数（如增加nlist）</li>
+                            <li><strong>查询模式自适应</strong>：根据查询模式变化调整融合策略和权重</li>
+                        </ul>
+                        
+                        <h3 id="periodic-reindexing">定期重建索引</h3>
+                        <ul>
+                            <li><strong>触发条件</strong>：数据量增长超过阈值、性能下降明显、参数变更较大</li>
+                            <li><strong>重建策略</strong>：增量重建、分批重建、完全重建</li>
+                            <li><strong>重建时机</strong>：选择系统负载低的时段进行重建</li>
+                        </ul>
+                        
+                        <h2 id="case-studies">案例研究</h2>
+                        
+                        <h3 id="case-study-1">案例1：大规模技术文档库优化</h3>
+                        <p>对于包含数百万技术文档的知识库，参数配置如下：</p>
+                        
+                        <h4>向量索引配置</h4>
+                        <ul>
+                            <li><strong>算法</strong>：HNSW</li>
+                            <li><strong>参数</strong>：M=64, ef_construction=500, ef_search=100</li>
+                            <li><strong>距离度量</strong>：余弦相似度</li>
+                            <li><strong>优化策略</strong>：分片部署，每个分片包含约50万文档</li>
+                        </ul>
+                        
+                        <h4>关键词索引配置</h4>
+                        <ul>
+                            <li><strong>算法</strong>：BM25</li>
+                            <li><strong>参数</strong>：k1=1.5, b=0.8</li>
+                            <li><strong>分词</strong>：领域定制分词器，包含技术术语词典</li>
+                            <li><strong>n-gram</strong>：1-3，捕捉技术术语和短语</li>
+                        </ul>
+                        
+                        <h4>混合策略</h4>
+                        <ul>
+                            <li><strong>融合方法</strong>：关键词预过滤 + 向量排序</li>
+                            <li><strong>过滤比例</strong>：关键词索引选取前1000个结果作为候选集</li>
+                            <li><strong>最终结果</strong>：向量排序后返回前20个结果</li>
+                        </ul>
+                        
+                        <h4>性能结果</h4>
+                        <ul>
+                            <li><strong>查询延迟</strong>：平均100ms</li>
+                            <li><strong>准确率</strong>：提高30%（相比单一向量索引）</li>
+                            <li><strong>资源消耗</strong>：内存使用减少40%（相比纯向量索引）</li>
+                        </ul>
+                        
+                        <h3 id="case-study-2">案例2：医学问答系统优化</h3>
+                        <p>对于专注于医学领域的问答系统，参数配置如下：</p>
+                        
+                        <h4>分层索引配置</h4>
+                        <ul>
+                            <li><strong>层级结构</strong>：4层（医学领域-疾病类别-具体疾病-症状/治疗）</li>
+                            <li><strong>层级向量化</strong>：每个层级使用独立的向量表示</li>
+                            <li><strong>检索策略</strong>：混合检索（同时在多个层级检索）</li>
+                        </ul>
+                        
+                        <h4>向量索引配置</h4>
+                        <ul>
+                            <li><strong>算法</strong>：HNSW</li>
+                            <li><strong>参数</strong>：M=32, ef_construction=300, ef_search=150</li>
+                            <li><strong>模型</strong>：医学领域微调的嵌入模型</li>
+                        </ul>
+                        
+                        <h4>关键词索引配置</h4>
+                        <ul>
+                            <li><strong>医学术语识别</strong>：专用医学术语提取器</li>
+                            <li><strong>同义词扩展</strong>：医学术语同义词库</li>
+                            <li><strong>BM25参数</strong>：k1=2.0, b=0.75（适应医学长文本）</li>
+                        </ul>
+                        
+                        <h4>混合策略</h4>
+                        <ul>
+                            <li><strong>查询分类</strong>：将查询分为症状描述、疾病查询、治疗方法三类</li>
+                            <li><strong>自适应权重</strong>：
+                                <ul>
+                                    <li>症状描述：向量0.8 + 关键词0.2</li>
+                                    <li>疾病查询：向量0.5 + 关键词0.5</li>
+                                    <li>治疗方法：向量0.6 + 关键词0.4</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h4>性能结果</h4>
+                        <ul>
+                            <li><strong>准确率</strong>：医学问题回答准确率提高25%</li>
+                            <li><strong>上下文理解</strong>：复杂症状描述的理解能力显著提升</li>
+                            <li><strong>专业性</strong>：医学术语识别和处理准确率达到95%</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="toc-container sticky-top" style="top: 100px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2023 Coze Studio RAG百科. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

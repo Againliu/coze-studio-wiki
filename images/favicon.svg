@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="6" fill="url(#gradient)" />
+  
+  <!-- 数据库/索引图标 -->
+  <path d="M16 6c-4.4 0-8 1.8-8 4v12c0 2.2 3.6 4 8 4s8-1.8 8-4V10c0-2.2-3.6-4-8-4z" fill="none" stroke="white" stroke-width="1.5" />
+  
+  <!-- 横线表示数据层 -->
+  <path d="M8 14h16" stroke="white" stroke-width="1.5" />
+  <path d="M8 18h16" stroke="white" stroke-width="1.5" />
+  
+  <!-- RAG字母 -->
+  <text x="16" y="16" font-family="Arial, sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="white">RAG</text>
+</svg>

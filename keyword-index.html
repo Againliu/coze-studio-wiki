@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关键词索引 - Coze Studio RAG百科</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">Coze Studio RAG百科</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">首页</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    RAG索引策略
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="vector-index.html">向量索引</a></li>
+                                    <li><a class="dropdown-item active" href="keyword-index.html">关键词索引</a></li>
+                                    <li><a class="dropdown-item" href="hierarchical-index.html">分层索引</a></li>
+                                    <li><a class="dropdown-item" href="hybrid-index.html">混合索引策略</a></li>
+                                    <li><a class="dropdown-item" href="index-parameters.html">索引参数配置</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">关于</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">联系我们</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="resources.html">资源</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="content-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="content">
+                        <h1>关键词索引</h1>
+                        
+                        <p class="lead">关键词索引是信息检索领域的经典方法，在RAG系统中仍然发挥着重要作用，特别是在需要精确匹配和高召回率场景下。</p>
+                        
+                        <div class="svg-container">
+                            <img src="images/inverted_index.svg" alt="倒排索引图解" class="img-fluid">
+                        </div>
+                        
+                        <h2 id="what-is-keyword-index">什么是关键词索引？</h2>
+                        <p>关键词索引是一种基于文本中出现的关键词或术语构建的索引结构，它将每个关键词映射到包含该关键词的文档列表。与向量索引关注语义相似性不同，关键词索引专注于精确匹配或部分匹配特定词汇，是传统搜索引擎的核心技术。</p>
+                        
+                        <h2 id="inverted-index">倒排索引</h2>
+                        <p>倒排索引是关键词索引的核心数据结构，它"倒置"了文档和词汇的关系，以词汇为索引，记录包含该词汇的所有文档。</p>
+                        
+                        <h3 id="inverted-index-structure">倒排索引结构</h3>
+                        <p>一个完整的倒排索引通常包含以下组件：</p>
+                        <ul>
+                            <li><strong>词典（Dictionary）</strong>：所有唯一词汇的集合，通常按字母顺序排序</li>
+                            <li><strong>倒排列表（Posting List）</strong>：每个词汇对应的文档ID列表</li>
+                            <li><strong>位置信息（Positions）</strong>：词汇在每个文档中的位置</li>
+                            <li><strong>频率信息（Frequency）</strong>：词汇在每个文档中出现的次数</li>
+                        </ul>
+                        
+                        <h3 id="inverted-index-example">倒排索引示例</h3>
+                        <p>假设有以下三个文档：</p>
+                        <ul>
+                            <li>文档1："人工智能技术正在快速发展"</li>
+                            <li>文档2："机器学习是人工智能的一个分支"</li>
+                            <li>文档3："深度学习推动了人工智能技术的进步"</li>
+                        </ul>
+                        
+                        <p>对应的倒排索引可能如下：</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>词汇</th>
+                                        <th>文档ID列表</th>
+                                        <th>位置信息</th>
+                                        <th>频率信息</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>人工智能</td>
+                                        <td>[1, 2, 3]</td>
+                                        <td>[0, 2, 4]</td>
+                                        <td>[1, 1, 1]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>技术</td>
+                                        <td>[1, 3]</td>
+                                        <td>[1, 5]</td>
+                                        <td>[1, 1]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>发展</td>
+                                        <td>[1]</td>
+                                        <td>[4]</td>
+                                        <td>[1]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>机器学习</td>
+                                        <td>[2]</td>
+                                        <td>[0]</td>
+                                        <td>[1]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>分支</td>
+                                        <td>[2]</td>
+                                        <td>[5]</td>
+                                        <td>[1]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>深度学习</td>
+                                        <td>[3]</td>
+                                        <td>[0]</td>
+                                        <td>[1]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>推动</td>
+                                        <td>[3]</td>
+                                        <td>[1]</td>
+                                        <td>[1]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>进步</td>
+                                        <td>[3]</td>
+                                        <td>[6]</td>
+                                        <td>[1]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h3 id="inverted-index-construction">倒排索引构建过程</h3>
+                        <ol>
+                            <li><strong>文档收集</strong>：获取需要索引的文档集合</li>
+                            <li><strong>文档分析</strong>：对每个文档进行分词、去除停用词等预处理</li>
+                            <li><strong>词汇提取</strong>：从文档中提取所有唯一词汇，建立词典</li>
+                            <li><strong>倒排列表构建</strong>：为每个词汇创建包含文档ID的列表</li>
+                            <li><strong>位置和频率记录</strong>：记录每个词汇在文档中的位置和频率</li>
+                            <li><strong>索引优化</strong>：压缩索引、构建辅助数据结构等</li>
+                        </ol>
+                        
+                        <h2 id="ranking-algorithms">排序算法</h2>
+                        <p>关键词索引通常结合各种排序算法来对检索结果进行排序，以提高相关性。</p>
+                        
+                        <h3 id="tf-idf">TF-IDF</h3>
+                        <p>TF-IDF（Term Frequency-Inverse Document Frequency）是最经典的文本相关性计算方法，它结合了词频（TF）和逆文档频率（IDF）两个因素。</p>
+                        
+                        <h4>TF-IDF计算公式</h4>
+                        <p>TF-IDF = TF × IDF</p>
+                        <ul>
+                            <li><strong>TF（词频）</strong>：词汇在文档中出现的频率，计算公式为：TF = (词汇在文档中的出现次数) / (文档中的总词数)</li>
+                            <li><strong>IDF（逆文档频率）</strong>：衡量词汇的普遍重要性，计算公式为：IDF = log(总文档数 / 包含该词汇的文档数)</li>
+                        </ul>
+                        
+                        <h4>TF-IDF特点</h4>
+                        <ul>
+                            <li>重视在文档中频繁出现但在整个文档集合中较少出现的词汇</li>
+                            <li>降低常见词（如"的"、"是"等）的权重</li>
+                            <li>计算简单，易于实现</li>
+                            <li>不考虑词汇的语义关系</li>
+                        </ul>
+                        
+                        <h3 id="bm25">BM25</h3>
+                        <p>BM25（Best Matching 25）是对TF-IDF的改进版本，是目前最流行的关键词排序算法之一。</p>
+                        
+                        <h4>BM25计算公式</h4>
+                        <pre><code class="language-text">score(D, Q) = ∑(IDF(qi) × (f(qi, D) × (k1 + 1)) / (f(qi, D) + k1 × (1 - b + b × |D| / avgdl)))</code></pre>
+                        <p>其中：</p>
+                        <ul>
+                            <li><strong>D</strong>：文档</li>
+                            <li><strong>Q</strong>：查询，包含多个词汇qi</li>
+                            <li><strong>f(qi, D)</strong>：词汇qi在文档D中的频率</li>
+                            <li><strong>|D|</strong>：文档D的长度（词数）</li>
+                            <li><strong>avgdl</strong>：所有文档的平均长度</li>
+                            <li><strong>k1</strong>：控制词频缩放的参数，通常在1.2-2.0之间</li>
+                            <li><strong>b</strong>：控制文档长度归一化的参数，通常为0.75</li>
+                        </ul>
+                        
+                        <h4>BM25特点</h4>
+                        <ul>
+                            <li>考虑了文档长度的影响，避免长文档的优势</li>
+                            <li>词频饱和，避免单个词汇频率过高导致的偏差</li>
+                            <li>参数可调，适应不同类型的文档集合</li>
+                            <li>在实际应用中表现优异</li>
+                        </ul>
+                        
+                        <h3 id="language-models">语言模型</h3>
+                        <p>语言模型方法使用概率模型来估计查询在文档语言模型下的生成概率。</p>
+                        
+                        <h4>基本原理</h4>
+                        <p>对于查询Q和文档D，计算P(Q|D)，即给定文档D生成查询Q的概率。通常使用多项式分布和平滑技术来估计这个概率。</p>
+                        
+                        <h4>常见的语言模型方法</h4>
+                        <ul>
+                            <li><strong>Jelinek-Mercer平滑</strong>：结合文档模型和集合模型</li>
+                            <li><strong>Dirichlet平滑</strong>：使用先验分布进行平滑</li>
+                            <li><strong>两阶段平滑</strong>：结合多种平滑方法</li>
+                        </ul>
+                        
+                        <h2 id="keyword-extraction">关键词提取</h2>
+                        <p>在RAG系统中，关键词提取是构建关键词索引的重要步骤，常用的关键词提取方法包括：</p>
+                        
+                        <h3 id="statistical-methods">统计方法</h3>
+                        <ul>
+                            <li><strong>TF-IDF</strong>：使用TF-IDF值提取重要词汇</li>
+                            <li><strong>TextRank</strong>：基于图算法的关键词提取</li>
+                            <li><strong>RAKE</strong>：快速自动关键词提取算法</li>
+                        </ul>
+                        
+                        <h3 id="ml-methods">机器学习方法</h3>
+                        <ul>
+                            <li><strong>监督学习</strong>：使用标注数据训练分类器</li>
+                            <li><strong>半监督学习</strong>：结合少量标注数据和大量未标注数据</li>
+                            <li><strong>深度学习</strong>：使用BERT等预训练模型提取关键词</li>
+                        </ul>
+                        
+                        <h3 id="hybrid-methods">混合方法</h3>
+                        <ul>
+                            <li><strong>统计+规则</strong>：结合统计特征和语言规则</li>
+                            <li><strong>统计+机器学习</strong>：使用统计特征训练机器学习模型</li>
+                            <li><strong>多模型集成</strong>：综合多种模型的结果</li>
+                        </ul>
+                        
+                        <h2 id="keyword-index-in-rag">关键词索引在RAG中的应用</h2>
+                        
+                        <h3 id="sparse-vector-retrieval">稀疏向量检索</h3>
+                        <p>在RAG系统中，关键词索引通常以稀疏向量的形式实现，每个文档表示为一个高维稀疏向量，向量的每个维度对应一个词汇，值为该词汇的权重（如TF-IDF或BM25分数）。</p>
+                        
+                        <h4>稀疏向量检索流程</h4>
+                        <ol>
+                            <li>将文档集合转换为稀疏向量表示</li>
+                            <li>构建倒排索引，支持高效检索</li>
+                            <li>将用户查询转换为稀疏向量</li>
+                            <li>计算查询向量与文档向量的相似度</li>
+                            <li>返回相似度最高的文档</li>
+                        </ol>
+                        
+                        <h3 id="keyword-filtering">关键词过滤</h3>
+                        <p>在RAG系统中，关键词索引还可以用作预过滤器，缩小向量索引的搜索范围。</p>
+                        
+                        <h4>关键词过滤流程</h4>
+                        <ol>
+                            <li>从用户查询中提取关键词</li>
+                            <li>使用关键词索引快速找到包含这些关键词的文档子集</li>
+                            <li>在这个子集上应用向量索引进行语义搜索</li>
+                            <li>合并结果，返回最终答案</li>
+                        </ol>
+                        
+                        <h3 id="exact-matching">精确匹配</h3>
+                        <p>对于需要精确匹配的场景（如法律文件、技术规范等），关键词索引比向量索引更适合。</p>
+                        
+                        <h4>精确匹配应用场景</h4>
+                        <ul>
+                            <li>法律条款查询</li>
+                            <li>产品规格检索</li>
+                            <li>代码片段搜索</li>
+                            <li>专业术语定义查找</li>
+                        </ul>
+                        
+                        <h2 id="implementation-tools">实现工具</h2>
+                        <p>在实际应用中，可以使用以下工具实现关键词索引：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>工具</th>
+                                        <th>特点</th>
+                                        <th>适用场景</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Elasticsearch</td>
+                                        <td>分布式搜索引擎，支持BM25，高可扩展性</td>
+                                        <td>大规模文档集合，需要复杂查询</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Solr</td>
+                                        <td>基于Lucene，功能丰富，易于配置</td>
+                                        <td>企业搜索，需要高级功能</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Whoosh</td>
+                                        <td>纯Python实现，轻量级，易于集成</td>
+                                        <td>小型应用，原型开发</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PyTerrier</td>
+                                        <td>Python接口的信息检索框架，支持多种模型</td>
+                                        <td>研究实验，需要灵活性</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rank-BM25</td>
+                                        <td>轻量级BM25实现，易于使用</td>
+                                        <td>简单应用，快速实现</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sparse Embeddings</td>
+                                        <td>结合现代NLP和传统IR技术</td>
+                                        <td>需要平衡效率和语义理解</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h2 id="optimization-tips">关键词索引优化技巧</h2>
+                        
+                        <h3 id="preprocessing-optimization">预处理优化</h3>
+                        <ul>
+                            <li><strong>分词优化</strong>：选择适合领域的分词器</li>
+                            <li><strong>停用词处理</strong>：移除对检索无意义的常见词</li>
+                            <li><strong>词干提取</strong>：将词汇归一化为基本形式</li>
+                            <li><strong>同义词扩展</strong>：添加同义词，提高召回率</li>
+                        </ul>
+                        
+                        <h3 id="index-optimization">索引优化</h3>
+                        <ul>
+                            <li><strong>索引压缩</strong>：减少索引大小，提高检索速度</li>
+                            <li><strong>分片策略</strong>：合理设置分片数量和大小</li>
+                            <li><strong>缓存机制</strong>：缓存热门查询结果</li>
+                            <li><strong>增量更新</strong>：支持实时添加新文档</li>
+                        </ul>
+                        
+                        <h3 id="query-optimization">查询优化</h3>
+                        <ul>
+                            <li><strong>查询扩展</strong>：添加相关词汇，提高召回率</li>
+                            <li><strong>查询重写</strong>：根据上下文调整查询</li>
+                            <li><strong>字段加权</strong>：为不同字段设置不同权重</li>
+                            <li><strong>结果多样性</strong>：避免返回过于相似的结果</li>
+                        </ul>
+                        
+                        <h2 id="limitations">关键词索引的局限性</h2>
+                        <ul>
+                            <li><strong>语义理解有限</strong>：难以捕捉词汇之间的语义关系</li>
+                            <li><strong>同义词问题</strong>：不同表达相同概念的词汇难以匹配</li>
+                            <li><strong>多义词问题</strong>：同一词汇在不同上下文有不同含义</li>
+                            <li><strong>语言依赖</strong>：不同语言需要不同的处理方法</li>
+                            <li><strong>长尾查询</strong>：罕见查询难以有效处理</li>
+                        </ul>
+                        
+                        <h2 id="case-studies">案例研究</h2>
+                        
+                        <h3 id="case-study-1">案例1：技术文档检索系统</h3>
+                        <p>对于包含大量技术术语和专业词汇的文档集合，可以采用以下策略：</p>
+                        <ul>
+                            <li>使用领域特定的分词器和停用词列表</li>
+                            <li>构建专业术语同义词库</li>
+                            <li>结合BM25和语言模型进行排序</li>
+                            <li>实现高亮显示和上下文摘要</li>
+                        </ul>
+                        
+                        <h3 id="case-study-2">案例2：混合检索系统</h3>
+                        <p>结合关键词索引和向量索引的混合系统：</p>
+                        <ul>
+                            <li>使用关键词索引进行初步过滤</li>
+                            <li>使用向量索引进行语义排序</li>
+                            <li>设计加权融合算法</li>
+                            <li>实现自适应调整机制</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="toc-container sticky-top" style="top: 100px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2023 Coze Studio RAG百科. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

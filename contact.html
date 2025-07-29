@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - Coze Studio RAG百科</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">Coze Studio RAG百科</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">首页</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    RAG索引策略
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="vector-index.html">向量索引</a></li>
+                                    <li><a class="dropdown-item" href="keyword-index.html">关键词索引</a></li>
+                                    <li><a class="dropdown-item" href="hierarchical-index.html">分层索引</a></li>
+                                    <li><a class="dropdown-item" href="hybrid-index.html">混合索引策略</a></li>
+                                    <li><a class="dropdown-item" href="index-parameters.html">索引参数配置</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">关于</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="contact.html">联系我们</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="resources.html">资源</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact-page">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="content">
+                        <h1>联系我们</h1>
+                        
+                        <div class="contact-intro">
+                            <p>我们非常重视您的反馈和建议。无论您有任何问题、意见或合作意向，都欢迎通过以下方式与我们联系。</p>
+                        </div>
+                        
+                        <div class="contact-methods">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="contact-card">
+                                        <div class="icon-wrapper">
+                                            <i class="bi bi-envelope-fill"></i>
+                                        </div>
+                                        <h3>电子邮件</h3>
+                                        <p>contact@cozestudio.com</p>
+                                        <p class="small">工作日24小时内回复</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact-card">
+                                        <div class="icon-wrapper">
+                                            <i class="bi bi-github"></i>
+                                        </div>
+                                        <h3>GitHub</h3>
+                                        <p><a href="https://github.com/coze-studio" target="_blank">github.com/coze-studio</a></p>
+                                        <p class="small">欢迎提交Issue和PR</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact-card">
+                                        <div class="icon-wrapper">
+                                            <i class="bi bi-twitter"></i>
+                                        </div>
+                                        <h3>Twitter</h3>
+                                        <p><a href="https://twitter.com/CozestudioAI" target="_blank">@CozestudioAI</a></p>
+                                        <p class="small">关注获取最新动态</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-form-section">
+                            <h2>发送消息</h2>
+                            <form id="contactForm" class="contact-form">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">姓名</label>
+                                    <input type="text" class="form-control" id="name" placeholder="您的姓名" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">电子邮件</label>
+                                    <input type="email" class="form-control" id="email" placeholder="您的电子邮件地址" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label">主题</label>
+                                    <input type="text" class="form-control" id="subject" placeholder="消息主题">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">消息内容</label>
+                                    <textarea class="form-control" id="message" rows="5" placeholder="请输入您的消息内容..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">发送消息</button>
+                            </form>
+                        </div>
+                        
+                        <div class="faq-section">
+                            <h2>常见问题</h2>
+                            <div class="accordion" id="faqAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            如何引用本网站的内容？
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            您可以按照学术引用格式引用本网站内容：Coze Studio. (2023). RAG索引策略. Coze Studio RAG百科. https://rag.cozestudio.com/
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            我可以贡献内容吗？
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            当然可以！我们非常欢迎社区贡献。您可以通过GitHub提交PR，或者发送邮件给我们讨论您的想法。所有被接受的贡献都将获得适当的署名。
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingThree">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            网站内容多久更新一次？
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            我们计划每月更新一次内容，以反映RAG技术的最新发展。对于重大技术突破或重要研究成果，我们会及时进行特别更新。
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFour">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            我可以请求添加特定主题吗？
+                                        </button>
+                                    </h2>
+                                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            是的，我们非常欢迎主题建议！请通过联系表单或电子邮件告诉我们您希望了解的RAG相关主题，我们会考虑将其添加到我们的内容计划中。
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2023 Coze Studio RAG百科. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // 联系表单提交处理
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // 在实际应用中，这里应该有表单提交到服务器的代码
+            // 这里仅做演示
+            alert('感谢您的消息！我们会尽快回复您。');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
