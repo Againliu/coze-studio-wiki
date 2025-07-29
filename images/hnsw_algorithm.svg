@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#f8fafc"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1e293b">HNSW 算法结构</text>
+  <text x="400" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#64748b">Hierarchical Navigable Small World</text>
+  
+  <!-- Layer 2 (顶层) -->
+  <text x="100" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#4f46e5">Layer 2</text>
+  <circle cx="200" cy="120" r="20" fill="url(#grad1)" stroke="#4338ca" stroke-width="3"/>
+  <text x="200" y="127" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">A</text>
+  
+  <circle cx="400" cy="120" r="20" fill="url(#grad1)" stroke="#4338ca" stroke-width="3"/>
+  <text x="400" y="127" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">B</text>
+  
+  <circle cx="600" cy="120" r="20" fill="url(#grad1)" stroke="#4338ca" stroke-width="3"/>
+  <text x="600" y="127" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">C</text>
+  
+  <!-- Layer 2 连接 -->
+  <line x1="220" y1="120" x2="380" y2="120" stroke="#4338ca" stroke-width="2"/>
+  <line x1="420" y1="120" x2="580" y2="120" stroke="#4338ca" stroke-width="2"/>
+  
+  <!-- Layer 1 (中层) -->
+  <text x="100" y="200" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#059669">Layer 1</text>
+  
+  <!-- Layer 1 节点 -->
+  <circle cx="150" cy="220" r="18" fill="url(#grad2)" stroke="#047857" stroke-width="2"/>
+  <text x="150" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">A</text>
+  
+  <circle cx="250" cy="220" r="18" fill="url(#grad2)" stroke="#047857" stroke-width="2"/>
+  <text x="250" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">D</text>
+  
+  <circle cx="350" cy="220" r="18" fill="url(#grad2)" stroke="#047857" stroke-width="2"/>
+  <text x="350" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">B</text>
+  
+  <circle cx="450" cy="220" r="18" fill="url(#grad2)" stroke="#047857" stroke-width="2"/>
+  <text x="450" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">E</text>
+  
+  <circle cx="550" cy="220" r="18" fill="url(#grad2)" stroke="#047857" stroke-width="2"/>
+  <text x="550" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">C</text>
+  
+  <circle cx="650" cy="220" r="18" fill="url(#grad2)" stroke="#047857" stroke-width="2"/>
+  <text x="650" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">F</text>
+  
+  <!-- Layer 1 连接 -->
+  <line x1="168" y1="220" x2="232" y2="220" stroke="#047857" stroke-width="2"/>
+  <line x1="268" y1="220" x2="332" y2="220" stroke="#047857" stroke-width="2"/>
+  <line x1="368" y1="220" x2="432" y2="220" stroke="#047857" stroke-width="2"/>
+  <line x1="468" y1="220" x2="532" y2="220" stroke="#047857" stroke-width="2"/>
+  <line x1="568" y1="220" x2="632" y2="220" stroke="#047857" stroke-width="2"/>
+  
+  <!-- 跨层连接 -->
+  <line x1="200" y1="140" x2="150" y2="202" stroke="#64748b" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="400" y1="140" x2="350" y2="202" stroke="#64748b" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="600" y1="140" x2="550" y2="202" stroke="#64748b" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- Layer 0 (底层) -->
+  <text x="100" y="320" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#d97706">Layer 0</text>
+  
+  <!-- Layer 0 节点 -->
+  <circle cx="120" cy="340" r="15" fill="url(#grad3)" stroke="#b45309" stroke-width="2"/>
+  <text x="120" y="346" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">A</text>
+  
+  <circle cx="180" cy="340" r="15" fill="url(#grad3)" stroke="#b45309" stroke-width="2"/>
+  <text x="180" y="346" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">G</text>
+  
+  <circle cx="240" cy="340" r="15" fill="url(#grad3)" stroke="#b45309" stroke-width="2"/>
+  <text x="240" y="346" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">D</text>
+  
+  <circle cx="300" cy="340" r="15" fill="url(#grad3)" stroke="#b45309" stroke-width="2"/>
+  <text x="300" y="346" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">H</text>
+  
+  <circle cx="360" cy="340" r="15" fill="url(#grad3)" stroke="#b45309" stroke-width="2"/>
+  <text x="360" y="346" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">B</text>
+  
+  <circle cx="420" cy="340" r="15" fill="url(#grad3)" stroke="#b45309" stroke-width="2"/>
+  <text x="420" y="346" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">I</text>
+  
+  <circle cx="480" cy="340" r="15" fill="url(#grad3)" stroke="#b45309" stroke-width="2"/>
+  <text x="480" y="346" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">E</text>
+  
+  <circle cx="540" cy="340" r="15" fill="url(#grad3)" stroke="#b45309" stroke-width="2"/>
+  <text x="540" y="346" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">J</text>
+  
+  <circle cx="600" cy="340" r="15" fill="url(#grad3)" stroke="#b45309" stroke-width="2"/>
+  <text x="600" y="346" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">C</text>
+  
+  <circle cx="660" cy="340" r="15" fill="url(#grad3)" stroke="#b45309" stroke-width="2"/>
+  <text x="660" y="346" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">F</text>
+  
+  <!-- Layer 0 连接 (密集连接) -->
+  <line x1="135" y1="340" x2="165" y2="340" stroke="#b45309" stroke-width="1"/>
+  <line x1="195" y1="340" x2="225" y2="340" stroke="#b45309" stroke-width="1"/>
+  <line x1="255" y1="340" x2="285" y2="340" stroke="#b45309" stroke-width="1"/>
+  <line x1="315" y1="340" x2="345" y2="340" stroke="#b45309" stroke-width="1"/>
+  <line x1="375" y1="340" x2="405" y2="340" stroke="#b45309" stroke-width="1"/>
+  <line x1="435" y1="340" x2="465" y2="340" stroke="#b45309" stroke-width="1"/>
+  <line x1="495" y1="340" x2="525" y2="340" stroke="#b45309" stroke-width="1"/>
+  <line x1="555" y1="340" x2="585" y2="340" stroke="#b45309" stroke-width="1"/>
+  <line x1="615" y1="340" x2="645" y2="340" stroke="#b45309" stroke-width="1"/>
+  
+  <!-- 一些跳跃连接 -->
+  <line x1="120" y1="340" x2="240" y2="340" stroke="#b45309" stroke-width="1"/>
+  <line x1="180" y1="340" x2="300" y2="340" stroke="#b45309" stroke-width="1"/>
+  <line x1="360" y1="340" x2="480" y2="340" stroke="#b45309" stroke-width="1"/>
+  
+  <!-- 跨层连接到Layer 0 -->
+  <line x1="150" y1="238" x2="120" y2="325" stroke="#64748b" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="250" y1="238" x2="240" y2="325" stroke="#64748b" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="350" y1="238" x2="360" y2="325" stroke="#64748b" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="450" y1="238" x2="480" y2="325" stroke="#64748b" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="550" y1="238" x2="600" y2="325" stroke="#64748b" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="650" y1="238" x2="660" y2="325" stroke="#64748b" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- 查询路径示例 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626" />
+    </marker>
+  </defs>
+  
+  <!-- 查询起点 -->
+  <circle cx="50" cy="120" r="12" fill="#dc2626" stroke="#b91c1c" stroke-width="2"/>
+  <text x="50" y="126" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">Q</text>
+  <text x="50" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#dc2626">查询</text>
+  
+  <!-- 查询路径 -->
+  <path d="M 62 120 L 180 120" stroke="#dc2626" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 200 140 L 150 202" stroke="#dc2626" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 150 238 L 120 325" stroke="#dc2626" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- 算法特点说明 -->
+  <rect x="50" y="400" width="700" height="150" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="70" y="425" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b">HNSW 算法特点：</text>
+  
+  <text x="70" y="450" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#4f46e5">🔍 分层搜索：</text>
+  <text x="180" y="450" font-family="Arial, sans-serif" font-size="12" fill="#64748b">从顶层开始，逐层向下搜索，每层找到最近邻后进入下一层</text>
+  
+  <text x="70" y="470" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#059669">⚡ 高效性能：</text>
+  <text x="180" y="470" font-family="Arial, sans-serif" font-size="12" fill="#64748b">时间复杂度 O(log N)，比传统方法快数百倍</text>
+  
+  <text x="70" y="490" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#d97706">🌐 小世界网络：</text>
+  <text x="180" y="490" font-family="Arial, sans-serif" font-size="12" fill="#64748b">每个节点都有长距离和短距离连接，形成小世界网络结构</text>
+  
+  <text x="70" y="510" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#7c3aed">📈 可扩展性：</text>
+  <text x="180" y="510" font-family="Arial, sans-serif" font-size="12" fill="#64748b">支持动态插入和删除，适合大规模向量数据库</text>
+  
+  <text x="70" y="530" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#dc2626">🎯 应用场景：</text>
+  <text x="180" y="530" font-family="Arial, sans-serif" font-size="12" fill="#64748b">推荐系统、图像检索、文本相似度搜索、RAG 系统等</text>
+</svg>

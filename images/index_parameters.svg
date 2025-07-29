@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#f8fafc"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1e293b">索引参数配置</text>
+  
+  <!-- 主要参数区域 -->
+  <rect x="50" y="70" width="700" height="480" rx="15" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- 向量维度配置 -->
+  <rect x="80" y="100" width="300" height="120" rx="10" fill="url(#grad1)" stroke="#7c3aed" stroke-width="2"/>
+  <text x="230" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">向量维度 (Dimension)</text>
+  
+  <circle cx="130" cy="160" r="25" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+  <text x="130" y="167" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">384</text>
+  
+  <circle cx="200" cy="160" r="25" fill="#34d399" stroke="#10b981" stroke-width="2"/>
+  <text x="200" y="167" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">768</text>
+  
+  <circle cx="270" cy="160" r="25" fill="#60a5fa" stroke="#3b82f6" stroke-width="2"/>
+  <text x="270" y="167" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">1024</text>
+  
+  <circle cx="330" cy="160" r="25" fill="#f87171" stroke="#ef4444" stroke-width="2"/>
+  <text x="330" y="167" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">1536</text>
+  
+  <text x="230" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">维度越高，表示能力越强，但计算成本也越高</text>
+  
+  <!-- 相似度阈值配置 -->
+  <rect x="420" y="100" width="300" height="120" rx="10" fill="url(#grad2)" stroke="#0891b2" stroke-width="2"/>
+  <text x="570" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">相似度阈值 (Threshold)</text>
+  
+  <!-- 滑动条 -->
+  <rect x="450" y="150" width="240" height="8" rx="4" fill="#e2e8f0"/>
+  <rect x="450" y="150" width="168" height="8" rx="4" fill="#22c55e"/>
+  <circle cx="618" cy="154" r="12" fill="#ffffff" stroke="#0891b2" stroke-width="3"/>
+  
+  <text x="450" y="175" font-family="Arial, sans-serif" font-size="10" fill="white">0.0</text>
+  <text x="570" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">0.7</text>
+  <text x="690" y="175" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="white">1.0</text>
+  
+  <text x="570" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">阈值越高，检索结果越精确但召回率越低</text>
+  
+  <!-- Top-K 配置 -->
+  <rect x="80" y="250" width="300" height="120" rx="10" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+  <text x="230" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">Top-K 返回数量</text>
+  
+  <rect x="120" y="300" width="40" height="30" rx="5" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+  <text x="140" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#d97706">5</text>
+  
+  <rect x="180" y="300" width="40" height="30" rx="5" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+  <text x="200" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#d97706">10</text>
+  
+  <rect x="240" y="300" width="40" height="30" rx="5" fill="#22c55e" stroke="#16a34a" stroke-width="3"/>
+  <text x="260" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">20</text>
+  
+  <rect x="300" y="300" width="40" height="30" rx="5" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+  <text x="320" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#d97706">50</text>
+  
+  <text x="230" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">推荐值：10-20，平衡性能与质量</text>
+  
+  <!-- 索引类型配置 -->
+  <rect x="420" y="250" width="300" height="120" rx="10" fill="#8b5cf6" stroke="#7c3aed" stroke-width="2"/>
+  <text x="570" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">索引类型 (Index Type)</text>
+  
+  <rect x="450" y="295" width="80" height="25" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="490" y="312" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#7c3aed">FLAT</text>
+  
+  <rect x="540" y="295" width="80" height="25" rx="12" fill="#22c55e" stroke="#16a34a" stroke-width="3"/>
+  <text x="580" y="312" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">HNSW</text>
+  
+  <rect x="630" y="295" width="80" height="25" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="670" y="312" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#7c3aed">IVF</text>
+  
+  <text x="570" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">FLAT: 精确但慢 | HNSW: 快速近似 | IVF: 大规模数据</text>
+  <text x="570" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">推荐：HNSW (平衡速度与精度)</text>
+  
+  <!-- 距离度量配置 -->
+  <rect x="80" y="400" width="300" height="120" rx="10" fill="#ef4444" stroke="#dc2626" stroke-width="2"/>
+  <text x="230" y="425" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">距离度量 (Distance Metric)</text>
+  
+  <rect x="110" y="450" width="70" height="25" rx="12" fill="#22c55e" stroke="#16a34a" stroke-width="3"/>
+  <text x="145" y="467" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">Cosine</text>
+  
+  <rect x="190" y="450" width="70" height="25" rx="12" fill="#ffffff" stroke="#dc2626" stroke-width="2"/>
+  <text x="225" y="467" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#dc2626">Euclidean</text>
+  
+  <rect x="270" y="450" width="70" height="25" rx="12" fill="#ffffff" stroke="#dc2626" stroke-width="2"/>
+  <text x="305" y="467" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#dc2626">Dot Product</text>
+  
+  <text x="230" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Cosine: 角度相似度 | Euclidean: 欧式距离 | Dot: 点积</text>
+  <text x="230" y="505" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">推荐：Cosine (适合文本向量)</text>
+  
+  <!-- 批处理大小配置 -->
+  <rect x="420" y="400" width="300" height="120" rx="10" fill="#06b6d4" stroke="#0891b2" stroke-width="2"/>
+  <text x="570" y="425" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">批处理大小 (Batch Size)</text>
+  
+  <!-- 进度条样式显示 -->
+  <rect x="450" y="450" width="240" height="20" rx="10" fill="#e2e8f0"/>
+  <rect x="450" y="450" width="120" height="20" rx="10" fill="#22c55e"/>
+  <text x="570" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">512</text>
+  
+  <text x="450" y="485" font-family="Arial, sans-serif" font-size="10" fill="white">64</text>
+  <text x="690" y="485" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="white">2048</text>
+  
+  <text x="570" y="505" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">批处理大小影响索引构建速度和内存使用</text>
+  
+  <!-- 底部说明 -->
+  <rect x="50" y="560" width="700" height="30" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="400" y="580" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#92400e">💡 配置建议：根据数据规模和性能要求调整参数，建议先使用默认值测试</text>
+</svg>

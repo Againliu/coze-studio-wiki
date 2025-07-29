@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#f8fafc"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1e293b">混合索引策略</text>
+  
+  <!-- 查询输入 -->
+  <rect x="300" y="70" width="200" height="40" rx="20" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+  <text x="400" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#334155">用户查询</text>
+  
+  <!-- 箭头 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />
+    </marker>
+  </defs>
+  
+  <line x1="400" y1="110" x2="400" y2="140" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 混合策略分支 -->
+  <rect x="350" y="140" width="100" height="30" rx="15" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+  <text x="400" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">混合策略</text>
+  
+  <!-- 分支箭头 -->
+  <line x1="350" y1="170" x2="200" y2="200" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="450" y1="170" x2="600" y2="200" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 密集检索分支 -->
+  <rect x="100" y="200" width="200" height="80" rx="10" fill="url(#grad1)" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="200" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">密集检索 (Dense)</text>
+  <text x="200" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">• 语义相似度匹配</text>
+  <text x="200" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">• 向量嵌入计算</text>
+  <text x="200" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">• 上下文理解</text>
+  
+  <!-- 稀疏检索分支 -->
+  <rect x="500" y="200" width="200" height="80" rx="10" fill="url(#grad2)" stroke="#059669" stroke-width="2"/>
+  <text x="600" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">稀疏检索 (Sparse)</text>
+  <text x="600" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">• 关键词精确匹配</text>
+  <text x="600" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">• TF-IDF 计算</text>
+  <text x="600" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">• 词汇重叠度</text>
+  
+  <!-- 结果合并 -->
+  <line x1="200" y1="280" x2="350" y2="320" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="600" y1="280" x2="450" y2="320" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <rect x="300" y="320" width="200" height="60" rx="10" fill="url(#grad3)" stroke="#d97706" stroke-width="2"/>
+  <text x="400" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">结果融合</text>
+  <text x="400" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">RRF (Reciprocal Rank Fusion)</text>
+  <text x="400" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">加权平均 + 重排序</text>
+  
+  <!-- 最终输出 -->
+  <line x1="400" y1="380" x2="400" y2="410" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <rect x="300" y="410" width="200" height="40" rx="20" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
+  <text x="400" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">最优检索结果</text>
+  
+  <!-- 性能对比表格 -->
+  <rect x="50" y="480" width="700" height="100" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="70" y="500" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">性能对比：</text>
+  
+  <!-- 表格头 -->
+  <text x="120" y="520" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#475569">检索方式</text>
+  <text x="250" y="520" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#475569">优势</text>
+  <text x="450" y="520" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#475569">劣势</text>
+  <text x="650" y="520" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#475569">适用场景</text>
+  
+  <!-- 分割线 -->
+  <line x1="70" y1="525" x2="730" y2="525" stroke="#cbd5e1" stroke-width="1"/>
+  
+  <!-- 密集检索行 -->
+  <text x="120" y="540" font-family="Arial, sans-serif" font-size="11" fill="#3b82f6">密集检索</text>
+  <text x="250" y="540" font-family="Arial, sans-serif" font-size="10" fill="#64748b">语义理解强</text>
+  <text x="450" y="540" font-family="Arial, sans-serif" font-size="10" fill="#64748b">计算开销大</text>
+  <text x="650" y="540" font-family="Arial, sans-serif" font-size="10" fill="#64748b">概念查询</text>
+  
+  <!-- 稀疏检索行 -->
+  <text x="120" y="555" font-family="Arial, sans-serif" font-size="11" fill="#10b981">稀疏检索</text>
+  <text x="250" y="555" font-family="Arial, sans-serif" font-size="10" fill="#64748b">精确匹配</text>
+  <text x="450" y="555" font-family="Arial, sans-serif" font-size="10" fill="#64748b">语义理解弱</text>
+  <text x="650" y="555" font-family="Arial, sans-serif" font-size="10" fill="#64748b">关键词查询</text>
+  
+  <!-- 混合检索行 -->
+  <text x="120" y="570" font-family="Arial, sans-serif" font-size="11" fill="#f59e0b">混合检索</text>
+  <text x="250" y="570" font-family="Arial, sans-serif" font-size="10" fill="#64748b">兼具两者优势</text>
+  <text x="450" y="570" font-family="Arial, sans-serif" font-size="10" fill="#64748b">实现复杂</text>
+  <text x="650" y="570" font-family="Arial, sans-serif" font-size="10" fill="#64748b">通用场景</text>
+</svg>
