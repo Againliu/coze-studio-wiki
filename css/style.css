@@ -344,3 +344,40 @@ pre[class*="language-"] {
 .bg-info { background-color: var(--info-color) !important; }
 
 .rounded { border-radius: var(--border-radius) !important; }
+
+/* 平台模块样式 */
+.platform-modules {
+    margin-top: 3rem;
+}
+
+.module-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.module-icon {
+    text-align: center;
+}
+
+.module-status {
+    margin-top: 1rem;
+}
+
+.text-purple {
+    color: #6f42c1 !important;
+}
+
+.card-footer {
+    background-color: transparent;
+    border-top: 1px solid rgba(0,0,0,0.125);
+}
+
+.badge {
+    font-size: 0.75rem;
+}

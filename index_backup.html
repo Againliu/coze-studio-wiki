@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coze Studio 百科</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">Coze Studio 百科</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="index.html">首页</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    RAG索引策略
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="vector-index.html">向量索引</a></li>
+                                    <li><a class="dropdown-item" href="keyword-index.html">关键词索引</a></li>
+                                    <li><a class="dropdown-item" href="hierarchical-index.html">分层索引</a></li>
+                                    <li><a class="dropdown-item" href="hybrid-index.html">混合索引策略</a></li>
+                                    <li><a class="dropdown-item" href="index-parameters.html">索引参数配置</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">关于</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">联系我们</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="resources.html">资源</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Coze Studio 百科</h1>
+            <p class="lead">探索检索增强生成（RAG）技术的核心索引策略</p>
+        </div>
+    </section>
+
+    <section class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="intro-text">
+                        <h2>什么是RAG？</h2>
+                        <p>检索增强生成（Retrieval-Augmented Generation，RAG）是一种结合了检索系统和生成模型的技术框架，它通过从外部知识库中检索相关信息来增强大型语言模型的生成能力。RAG系统能够提供更准确、更可靠的回答，同时减少幻觉问题。</p>
+                        
+                        <h2>RAG的核心组件</h2>
+                        <p>一个完整的RAG系统通常包含以下核心组件：</p>
+                        <ul>
+                            <li><strong>知识库</strong>：存储结构化或非结构化的文档和信息</li>
+                            <li><strong>索引系统</strong>：为知识库建立高效的检索结构</li>
+                            <li><strong>检索器</strong>：根据用户查询从知识库中检索相关信息</li>
+                            <li><strong>生成模型</strong>：结合检索到的信息生成最终回答</li>
+                        </ul>
+                        
+                        <h2>索引策略的重要性</h2>
+                        <p>在RAG系统中，索引策略直接影响检索的效率和准确性。一个好的索引策略能够：</p>
+                        <ul>
+                            <li>提高检索速度，减少延迟</li>
+                            <li>增强语义理解，找到真正相关的内容</li>
+                            <li>优化存储空间，降低系统资源消耗</li>
+                            <li>提升检索准确率，减少无关信息干扰</li>
+                        </ul>
+                    </div>
+
+                    <div class="index-strategies">
+                        <h2>RAG索引策略概览</h2>
+                        <div class="row mt-4">
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h3 class="card-title">向量索引</h3>
+                                        <p class="card-text">基于向量相似度的索引方法，将文本转换为高维向量并构建高效的近似最近邻搜索结构。</p>
+                                        <a href="vector-index.html" class="btn btn-primary">了解更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h3 class="card-title">关键词索引</h3>
+                                        <p class="card-text">基于文本关键词的索引方法，通过倒排索引和BM25等算法实现高效的关键词匹配。</p>
+                                        <a href="keyword-index.html" class="btn btn-primary">了解更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h3 class="card-title">分层索引</h3>
+                                        <p class="card-text">利用文档的层次结构组织索引，优化检索路径，提高复杂文档集合的检索效率。</p>
+                                        <a href="hierarchical-index.html" class="btn btn-primary">了解更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h3 class="card-title">混合索引策略</h3>
+                                        <p class="card-text">结合多种索引方法的优势，实现更全面、更精准的检索效果。</p>
+                                        <a href="hybrid-index.html" class="btn btn-primary">了解更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2023 Coze Studio 百科. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
