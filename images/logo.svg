@@ -22,5 +22,5 @@
   
   <!-- 文字部分 -->
   <text x="60" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4B5563">Coze Studio</text>
-  <text x="60" y="45" font-family="Arial, sans-serif" font-size="14" fill="#6B7280">RAG百科</text>
+  <text x="60" y="45" font-family="Arial, sans-serif" font-size="14" fill="#6B7280">百科</text>
 </svg>
