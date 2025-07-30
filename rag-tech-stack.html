@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG技术栈 - Coze Studio 百科</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">Coze Studio 百科</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">首页</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    索引策略
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="vector-index.html">向量索引</a></li>
+                                    <li><a class="dropdown-item" href="keyword-index.html">关键词索引</a></li>
+                                    <li><a class="dropdown-item" href="hybrid-index.html">混合索引</a></li>
+                                    <li><a class="dropdown-item" href="hierarchical-index.html">层次化索引</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">关于</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">联系</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="content-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="content">
+                        <h1>RAG技术栈</h1>
+                        
+                        <p class="lead">检索增强生成（RAG）是一个完整的技术栈，涵盖了从数据处理、索引构建到检索生成的全流程。本页面将为您全面介绍RAG技术栈的各个组成部分。</p>
+                        
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i>
+                            <strong>什么是RAG？</strong> RAG（Retrieval-Augmented Generation）是一种结合了信息检索和文本生成的AI技术，通过检索相关知识来增强大语言模型的生成能力。
+                        </div>
+
+                        <h2 id="rag-architecture">RAG系统架构</h2>
+                        <p>RAG系统通常包含以下核心组件：</p>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="bi bi-database"></i> 数据处理层</h5>
+                                        <p class="card-text">负责文档解析、分块、清洗和预处理</p>
+                                        <ul class="list-unstyled">
+                                            <li>• 文档解析（PDF、Word、HTML等）</li>
+                                            <li>• 文本分块（Chunking）</li>
+                                            <li>• 数据清洗和标准化</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="bi bi-search"></i> 索引构建层</h5>
+                                        <p class="card-text">构建高效的检索索引结构</p>
+                                        <ul class="list-unstyled">
+                                            <li>• <a href="vector-index.html">向量索引</a></li>
+                                            <li>• <a href="keyword-index.html">关键词索引</a></li>
+                                            <li>• <a href="hybrid-index.html">混合索引</a></li>
+                                            <li>• <a href="hierarchical-index.html">层次化索引</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="bi bi-cpu"></i> 检索引擎</h5>
+                                        <p class="card-text">执行高效的相似度检索</p>
+                                        <ul class="list-unstyled">
+                                            <li>• 语义检索</li>
+                                            <li>• 关键词检索</li>
+                                            <li>• 混合检索策略</li>
+                                            <li>• 重排序（Re-ranking）</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="bi bi-chat-dots"></i> 生成层</h5>
+                                        <p class="card-text">基于检索结果生成最终答案</p>
+                                        <ul class="list-unstyled">
+                                            <li>• 大语言模型（LLM）</li>
+                                            <li>• 提示工程（Prompt Engineering）</li>
+                                            <li>• 上下文融合</li>
+                                            <li>• 答案生成和优化</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 id="key-technologies">核心技术组件</h2>
+                        
+                        <h3>1. 文本嵌入模型</h3>
+                        <p>文本嵌入是RAG系统的基础，将文本转换为高维向量表示：</p>
+                        <ul>
+                            <li><strong>OpenAI Embeddings</strong>：text-embedding-ada-002、text-embedding-3-small/large</li>
+                            <li><strong>开源模型</strong>：BGE、E5、Sentence-BERT等</li>
+                            <li><strong>多语言模型</strong>：支持中文的嵌入模型</li>
+                        </ul>
+
+                        <h3>2. 向量数据库</h3>
+                        <p>存储和检索向量数据的专用数据库：</p>
+                        <ul>
+                            <li><strong>云服务</strong>：Pinecone、Weaviate、Qdrant</li>
+                            <li><strong>开源方案</strong>：Chroma、FAISS、Milvus</li>
+                            <li><strong>传统数据库扩展</strong>：PostgreSQL + pgvector</li>
+                        </ul>
+
+                        <h3>3. 大语言模型</h3>
+                        <p>负责最终的答案生成：</p>
+                        <ul>
+                            <li><strong>商业API</strong>：GPT-4、Claude、Gemini</li>
+                            <li><strong>开源模型</strong>：Llama、ChatGLM、Qwen</li>
+                            <li><strong>本地部署</strong>：Ollama、vLLM、TGI</li>
+                        </ul>
+
+                        <h2 id="implementation-frameworks">实现框架</h2>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">LangChain</h5>
+                                        <p class="card-text">最流行的RAG开发框架，提供丰富的组件和集成。</p>
+                                        <div class="badge bg-primary">Python</div>
+                                        <div class="badge bg-secondary">JavaScript</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">LlamaIndex</h5>
+                                        <p class="card-text">专注于数据连接和索引的RAG框架。</p>
+                                        <div class="badge bg-primary">Python</div>
+                                        <div class="badge bg-secondary">TypeScript</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Haystack</h5>
+                                        <p class="card-text">端到端的NLP框架，支持复杂的RAG流水线。</p>
+                                        <div class="badge bg-primary">Python</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 id="best-practices">最佳实践</h2>
+                        
+                        <div class="alert alert-success">
+                            <h5><i class="bi bi-lightbulb"></i> 关键建议</h5>
+                            <ul class="mb-0">
+                                <li><strong>数据质量</strong>：确保输入数据的质量和相关性</li>
+                                <li><strong>分块策略</strong>：选择合适的文本分块大小和重叠度</li>
+                                <li><strong>索引选择</strong>：根据数据特点选择合适的索引策略</li>
+                                <li><strong>检索优化</strong>：调整检索参数和重排序策略</li>
+                                <li><strong>提示优化</strong>：设计有效的提示模板</li>
+                                <li><strong>评估监控</strong>：建立完善的评估和监控体系</li>
+                            </ul>
+                        </div>
+
+                        <h2 id="performance-optimization">性能优化</h2>
+                        
+                        <h3>检索性能优化</h3>
+                        <ul>
+                            <li><strong>索引优化</strong>：选择合适的索引算法和参数</li>
+                            <li><strong>缓存策略</strong>：实现查询结果缓存</li>
+                            <li><strong>并行处理</strong>：利用多线程/多进程加速</li>
+                        </ul>
+
+                        <h3>生成质量优化</h3>
+                        <ul>
+                            <li><strong>上下文选择</strong>：优化检索结果的选择和排序</li>
+                            <li><strong>提示工程</strong>：设计更好的提示模板</li>
+                            <li><strong>后处理</strong>：对生成结果进行后处理和验证</li>
+                        </ul>
+
+                        <div class="mt-5">
+                            <h2>深入学习</h2>
+                            <p>选择您感兴趣的索引策略深入了解：</p>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <a href="vector-index.html" class="card text-decoration-none">
+                                        <div class="card-body">
+                                            <h5 class="card-title">向量索引</h5>
+                                            <p class="card-text">基于语义相似度的检索方法</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <a href="keyword-index.html" class="card text-decoration-none">
+                                        <div class="card-body">
+                                            <h5 class="card-title">关键词索引</h5>
+                                            <p class="card-text">基于关键词匹配的传统检索</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <a href="hybrid-index.html" class="card text-decoration-none">
+                                        <div class="card-body">
+                                            <h5 class="card-title">混合索引</h5>
+                                            <p class="card-text">结合多种检索策略的方法</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <a href="hierarchical-index.html" class="card text-decoration-none">
+                                        <div class="card-body">
+                                            <h5 class="card-title">层次化索引</h5>
+                                            <p class="card-text">多层次的索引组织结构</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>目录</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled">
+                                    <li><a href="#rag-architecture">RAG系统架构</a></li>
+                                    <li><a href="#key-technologies">核心技术组件</a></li>
+                                    <li><a href="#implementation-frameworks">实现框架</a></li>
+                                    <li><a href="#best-practices">最佳实践</a></li>
+                                    <li><a href="#performance-optimization">性能优化</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5>相关资源</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled">
+                                    <li><a href="resources.html">学习资源</a></li>
+                                    <li><a href="about.html">关于项目</a></li>
+                                    <li><a href="contact.html">联系我们</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2025 Coze Studio 百科. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
