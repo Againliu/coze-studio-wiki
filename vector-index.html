@@ -57,6 +57,21 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="content">
+                        <!-- 返回按钮和面包屑导航 -->
+                        <div class="navigation-section mb-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <button onclick="history.back()" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-arrow-left"></i> 返回
+                                </button>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0">
+                                        <li class="breadcrumb-item"><a href="index.html">首页</a></li>
+                                        <li class="breadcrumb-item"><a href="rag-tech-stack.html">RAG技术栈</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">向量索引</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
                         <h1>向量索引</h1>
                         
                         <p class="lead">向量索引是RAG系统中最常用的索引策略之一，它通过将文本转换为高维向量并构建高效的近似最近邻搜索结构，实现语义相似度检索。</p>

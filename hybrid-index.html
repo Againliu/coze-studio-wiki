@@ -57,6 +57,21 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="content">
+                        <!-- 返回按钮和面包屑导航 -->
+                        <div class="navigation-section mb-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <button onclick="history.back()" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-arrow-left"></i> 返回
+                                </button>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0">
+                                        <li class="breadcrumb-item"><a href="index.html">首页</a></li>
+                                        <li class="breadcrumb-item"><a href="rag-tech-stack.html">RAG技术栈</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">混合索引</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
                         <h1>混合索引策略</h1>
                         
                         <p class="lead">混合索引策略结合了多种索引方法的优势，通过融合向量索引、关键词索引和分层索引等技术，提供更全面、精确的检索能力，是现代RAG系统的重要发展方向。</p>
